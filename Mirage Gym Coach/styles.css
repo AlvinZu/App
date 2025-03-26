@@ -148,6 +148,8 @@
     backdrop-filter: blur(10px);
     width: 90%;
     max-width: 500px;
+    max-height: 80vh; /* Altura máxima del modal */
+    overflow-y: auto; /* Permite el desplazamiento vertical */
     position: relative;
     color: #fff;
 }
