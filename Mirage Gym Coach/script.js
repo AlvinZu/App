@@ -940,7 +940,7 @@ function calcularCalorias() {
     if (objetivo === "perder") {
         caloriasObjetivo = caloriasDiarias - 500; // Déficit de 500 kcal para perder grasa
     } else if (objetivo === "ganar") {
-        caloriasObjetivo = caloriasDiarias + 500; // Superávit de 500 kcal para ganar músculo
+        caloriasObjetivo = caloriasDiarias + 350; // Superávit de 500 kcal para ganar músculo
     }
 
     // Definir porcentajes de macronutrientes según el objetivo
@@ -950,13 +950,13 @@ function calcularCalorias() {
         carbohidratosPorcentaje = 0.41; // 41%
         grasasPorcentaje = 0.31; // 31%
     } else if (objetivo === "ganar") {
-        proteinasPorcentaje = 0.28; // 28%
-        carbohidratosPorcentaje = 0.5; // 50%
-        grasasPorcentaje = 0.22; // 22%
+        proteinasPorcentaje = 0.25; // 28%
+        carbohidratosPorcentaje = 0.44; // 41%
+        grasasPorcentaje = 0.31; // 31%
     } else {
-        proteinasPorcentaje = 0.26; // 26%
-        carbohidratosPorcentaje = 0.44; // 44%
-        grasasPorcentaje = 0.3; // 30%
+        proteinasPorcentaje = 0.25; // 26%
+        carbohidratosPorcentaje = 0.41; // 44%
+        grasasPorcentaje = 0.34; // 30%
     }
 
     // Calcular macronutrientes en gramos
