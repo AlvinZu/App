@@ -3,6 +3,7 @@ const imagenesEjercicios = {
 };
 
         // Variables globales
+        let ejerciciosGenerados = []; // Variable para almacenar los ejercicios generados temporalmente
         let usuarioAutenticado = null;
         let musculosSeleccionados = [];
         let intensidadSeleccionada = null;
@@ -149,15 +150,21 @@ const imagenesEjercicios = {
                 "Extension de gluteos incada con barra Smith",
                 "Sentadilla Stripper"
                     ],
+           
             entrepierna: [
                 "Sentadilla sumo con barra Smith",
                 "Prensa horizontal (acostado)",
                 "Aduccion en maquina (cerrando las piernas)",
                 "Sentadilla sumo con mancuerna",
                 "Jalon de pierna lateral con polea baja (aductores)"
-                
-            ],
-          abdomen: [
+              ],
+           pantoriila: [
+                "Elevacion de talones en barra smith",
+                "Elevacion de talones en prensa",
+                "Elevacion de talones en costurera",
+                "Elevacion de talones parado a un pie"
+              ],
+             abdomen: [
                 "Crunch acostado o en aparato",
                 "Crunch parado con cuerda en polea alta",
                 "Elevacion de rodillas en aparato",
@@ -219,6 +226,8 @@ const imagenesEjercicios = {
 
             if (id === "pantalla2") {
                 cargarMusculos();
+              // Limpiar ejercicios generados al regresar a la pantalla de selección de músculos
+              ejerciciosGenerados = [];
             } else if (id === "pantalla3") {
                 mostrarEjercicios();
             } else if (id === "pantalla4") {
@@ -309,64 +318,64 @@ function mostrarTab(tabId) {
 
         // Función para mostrar los ejercicios seleccionados en una tabla
         function mostrarEjercicios() {
-            const ejerciciosContainer = document.getElementById("ejercicios");
-            ejerciciosContainer.innerHTML = "";
+    const ejerciciosContainer = document.getElementById("ejercicios");
+    ejerciciosContainer.innerHTML = "";
 
-            // Crear la tabla
-            const table = document.createElement("table");
-            table.classList.add("tabla-ejercicios");
+    // Limpiar ejercicios generados previamente
+    ejerciciosGenerados = [];
 
-            // Encabezado de la tabla
-            const thead = document.createElement("thead");
-            thead.innerHTML = `
-                <tr>
-                    <th>Músculo</th>
-                    <th>Ejercicio</th>
-                    <th>Series</th>
-                    <th>Reps</th>
-                </tr>
+    // Crear la tabla
+    const table = document.createElement("table");
+    table.classList.add("tabla-ejercicios");
+
+    // Encabezado de la tabla
+    const thead = document.createElement("thead");
+    thead.innerHTML = `
+        <tr>
+            <th>Músculo</th>
+            <th>Ejercicio</th>
+            <th>Series</th>
+            <th>Reps</th>
+        </tr>
+    `;
+    table.appendChild(thead);
+
+    // Cuerpo de la tabla
+    const tbody = document.createElement("tbody");
+    musculosSeleccionados.forEach(musculo => {
+        const ejerciciosAleatorios = obtenerEjerciciosAleatorios(musculo);
+        ejerciciosGenerados.push(...ejerciciosAleatorios); // Guardar los ejercicios generados
+        ejerciciosAleatorios.forEach(ejercicio => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${musculo.toUpperCase()}</td>
+                <td>${ejercicio.ejercicio}</td>
+                <td>${ejercicio.series}</td>
+                <td>${ejercicio.repeticiones}</td>
             `;
-            table.appendChild(thead);
-
-            // Cuerpo de la tabla
-            const tbody = document.createElement("tbody");
-
-            musculosSeleccionados.forEach(musculo => {
-                const ejerciciosAleatorios = obtenerEjerciciosAleatorios(musculo);
-
-                ejerciciosAleatorios.forEach(ejercicio => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${musculo.toUpperCase()}</td>
-                        <td>${ejercicio.ejercicio}</td>
-                        <td>${ejercicio.series}</td>
-                        <td>${ejercicio.repeticiones}</td>
-                    `;
-                    tbody.appendChild(row);
-                });
-            });
-
-            table.appendChild(tbody);
-            ejerciciosContainer.appendChild(table);
-        }
+            tbody.appendChild(row);
+        });
+    });
+    table.appendChild(tbody);
+    ejerciciosContainer.appendChild(table);
+}
 
        // Función para obtener ejercicios aleatorios con series y repeticiones
         function obtenerEjerciciosAleatorios(musculo) {
-            const ejercicios = ejerciciosPredefinidos[musculo];
-            const maxEjercicios = obtenerMaximoEjercicios(intensidadSeleccionada);
-            const seleccionados = new Set();
-
-            while (seleccionados.size < maxEjercicios && seleccionados.size < ejercicios.length) {
-                const indiceAleatorio = Math.floor(Math.random() * ejercicios.length);
-                seleccionados.add(ejercicios[indiceAleatorio]);
-            }
-
-            return Array.from(seleccionados).map(ejercicio => ({
-                ejercicio: ejercicio,
-                series: obtenerNumeroAleatorioSeries(intensidadSeleccionada),
-                repeticiones: obtenerNumeroAleatorioRepeticiones(intensidadSeleccionada)
-            }));
-        }
+    const ejercicios = ejerciciosPredefinidos[musculo];
+    const maxEjercicios = obtenerMaximoEjercicios(intensidadSeleccionada);
+    const seleccionados = new Set();
+    while (seleccionados.size < maxEjercicios && seleccionados.size < ejercicios.length) {
+        const indiceAleatorio = Math.floor(Math.random() * ejercicios.length);
+        seleccionados.add(ejercicios[indiceAleatorio]);
+    }
+    return Array.from(seleccionados).map(ejercicio => ({
+        musculo: musculo, // Agregar el músculo al ejercicio
+        ejercicio: ejercicio,
+        series: obtenerNumeroAleatorioSeries(intensidadSeleccionada),
+        repeticiones: obtenerNumeroAleatorioRepeticiones(intensidadSeleccionada)
+    }));
+}
 
         // Función para determinar el máximo de ejercicios según la intensidad
         function obtenerMaximoEjercicios(intensidad) {
@@ -417,23 +426,36 @@ function mostrarTab(tabId) {
 
         // Función para guardar una rutina
         function guardarRutina() {
-            const nombreRutina = document.getElementById("nombreRutina").value;
-            if (!nombreRutina) {
-                alert("Por favor, asigna un nombre a tu rutina.");
-                return;
-            }
+    const nombreRutina = document.getElementById("nombreRutina").value;
+    if (!nombreRutina) {
+        alert("Por favor, asigna un nombre a tu rutina.");
+        return;
+    }
 
-            const rutina = {
-                nombre: nombreRutina,
-                musculos: musculosSeleccionados,
-                ejercicios: musculosSeleccionados.map(m => obtenerEjerciciosAleatorios(m))
-            };
-
-            usuarioAutenticado.rutinas.push(rutina);
-            localStorage.setItem("usuarios", JSON.stringify(usuarios));
-            /*alert("Rutina guardada exitosamente.");*/
-            mostrarPantalla("pantalla4");
+    // Agrupar los ejercicios generados por músculo
+    const ejerciciosPorMusculo = {};
+    ejerciciosGenerados.forEach(ejercicio => {
+        if (!ejerciciosPorMusculo[ejercicio.musculo]) {
+            ejerciciosPorMusculo[ejercicio.musculo] = [];
         }
+        ejerciciosPorMusculo[ejercicio.musculo].push(ejercicio);
+    });
+
+    // Crear la rutina con los ejercicios almacenados
+    const rutina = {
+        nombre: nombreRutina,
+        musculos: musculosSeleccionados,
+        ejercicios: musculosSeleccionados.map(musculo => ejerciciosPorMusculo[musculo])
+    };
+
+    usuarioAutenticado.rutinas.push(rutina);
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    
+
+    // Limpiar los ejercicios generados después de guardar
+    ejerciciosGenerados = [];
+    mostrarPantalla("pantalla4");
+}
 
         // Función para cargar las rutinas guardadas del usuario autenticado
         function cargarRutinasGuardadas() {
@@ -779,6 +801,10 @@ function mostrarImagen(nombreEjercicio) {
         "Elevacion de piernas acostado": "https://youtube.com/shorts/pBC7ciQ5BMc?si=VmV6sKfMwhu3Djsb",
         "Plancha con tiempo de tension": "https://youtube.com/shorts/cvl9Mm-efpw?si=11bemEBYZ7Um_XFE",
         "Estiramiento incado con rueda": "https://youtube.com/shorts/hEd3DDtDjIE?si=Doc-FfAvtN0GCjQr",
+        "Elevacion de talones en barra smith": "https://youtube.com/shorts/g-YzDXmVokI?si=_2VqiyQa2OaeEv8J",
+        "Elevacion de talones en prensa": "https://youtube.com/shorts/n67LekGQlWw?si=BrNGbJeBf2S5psrB",
+        "Elevacion de talones en costurera": "https://youtube.com/shorts/jeGHLQoKfPk?si=fBeyW5kuKFUkjWPf",
+        "Elevacion de talones parado a un pie": "https://youtu.be/GUBzhO-XSqk?si=0AzYl71OF1OI0N45",
         // Agrega aquí más ejercicios y sus URLs de imágenes
     };
 
