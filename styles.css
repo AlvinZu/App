@@ -1,3 +1,51 @@
+/* Estilos específicos para el modal de Ropa Deportiva */
+#modalRopaDeportiva .modal-contenido {
+    background: linear-gradient(135deg, #2a2a40, #1e1e2f);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    padding: 25px;
+    max-width: 500px;
+     max-height: 80vh; /* Altura máxima del modal */
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+    animation: aparecer 0.5s ease-in-out;
+}
+
+#modalRopaDeportiva h2 {
+    color: #ffc300;
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #ff9800;
+    padding-bottom: 10px;
+}
+
+#modalRopaDeportiva p {
+    color: #fff;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#modalRopaDeportiva button {
+    background: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+    width: 100%;
+}
+
+#modalRopaDeportiva button:hover {
+    background: #ff4d4d;
+    transform: scale(1.05);
+}
+
 /* Estilos específicos para el modal de la Calculadora de Calorías */
 #modalCalculadoraCalorias .modal-contenido {
     background: linear-gradient(135deg, #2a2a40, #1e1e2f);
