@@ -454,6 +454,8 @@ function mostrarTab(tabId) {
 
     // Limpiar los ejercicios generados después de guardar
     ejerciciosGenerados = [];
+    // Limpiar el campo del nombre de la rutina
+    document.getElementById("nombreRutina").value = "";   
     mostrarPantalla("pantalla4");
 }
 
