@@ -193,6 +193,8 @@ const imagenesEjercicios = {
     usuarios.push({ nombre: nombreUsuario, contrasena: contrasena, rutinas: [] });
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
     alert("Usuario registrado exitosamente.");
+    document.getElementById("nombreUsuarioRegistro").value = "";
+    document.getElementById("contrasenaRegistro").value = "";
     mostrarPantalla("pantallaInicioSesion");
 }
 
