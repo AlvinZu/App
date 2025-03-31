@@ -82,7 +82,7 @@
     <button onclick="mostrarPantalla('pantalla3')">ATRÁS</button>
 </div>
   
-   <!-- Pantalla: Mejora Tu Experiencia -->
+    <!-- Pantalla: Mejora Tu Experiencia -->
 <div id="pantallaMejoraExperiencia" class="pantalla oculto">
     <h1>MEJORA TU EXPERIENCIA</h1>
     <div id="pantallamejoraexperiencia"></div>
@@ -96,9 +96,93 @@
       <!-- Botón para abrir el modal de Ropa Deportiva -->
 <button onclick="abrirModal('modalRopaDeportiva')" style="background: #FF5722;">ROPA DEPORTIVA</button>
     </div>
-    
+<!-- Botón para abrir la pantalla de Contactos -->
+<button onclick="mostrarPantalla('pantallaContactos')" style="background: #FF5722;">
+    CONTACTOS
+</button>    
     <button onclick="mostrarPantalla('pantalla2')">ATRÁS</button>
 </div>
+
+<!-- Pantalla de Contactos -->
+<div id="pantallaContactos" class="pantalla oculto">
+  <h2>CONTACTOS</h2>
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+    <!-- Botón para abrir los datos del Nutriólogo -->
+    <button onclick="mostrarPantalla('pantallaNutriologo')" style="background: #4CAF50; color: white; border: none; padding: 10px; border-radius: 5px;">
+      NUTRIÓLOGO
+    </button>
+    <!-- Botón para abrir la pantalla de Comprar Suplementos -->
+    <button onclick="mostrarPantalla('pantallaSuplementos')" style="background: #ff9800; color: white; border: none; padding: 10px; border-radius: 5px;">
+      COMPRAR SUPLEMENTOS
+    </button>
+  </div>
+  <!-- Botón para regresar -->
+  <button onclick="mostrarPantalla('pantallaMejoraExperiencia')" style="margin-top: 20px;">
+    VOLVER
+  </button>
+</div>
+
+<!-- Pantalla de Datos del Nutriólogo -->
+<div id="pantallaNutriologo" class="pantalla oculto">
+  <h2>DATOS DEL NUTRIÓLOGO</h2>
+  <p><strong>Nombre:</strong> Numa Manuel Zepeda Gomez</p>
+  <p><strong>Estudios:</strong> Licenciarura en Nutrición Deportiva, Especializado en Recomposición Corporal.</p>
+  <p><strong>Cedula:</strong> N. 14556782</p>
+  <p><strong>Domicilio:</strong> C. Galeana #61 Los Reyes Mich.</p>
+  <p><strong>AGENDA TU CITA VIA WHATSAPP</strong></p>
+   <p><strong>Redes Sociales:</strong></p>
+  <div style="display: flex; gap: 10px; justify-content: center;">
+    <!-- Enlace a WhatsApp -->
+    <a href="https://wa.me/523541137313" target="_blank" style="text-decoration: none;">
+      <button style="background: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px;">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </button>
+    </a>
+    <!-- Enlace a Instagram -->
+    <a href="https://www.facebook.com/profile.php?id=100077483328338" target="_blank" style="text-decoration: none;">
+      <button style="background: #0935EA; color: white; border: none; padding: 10px 15px; border-radius: 5px;">
+        <i class="fab fa-instagram"></i> Facebook
+      </button>
+    </a>
+  </div>
+  <!-- Botón para regresar -->
+  <button onclick="mostrarPantalla('pantallaContactos')" style="margin-top: 20px;">
+    VOLVER
+  </button>
+</div>
+
+<!-- Pantalla de Comprar Suplementos -->
+<div id="pantallaSuplementos" class="pantalla oculto">
+  <h2>STROG FIT SUPLEMENTS</h2>
+  <p>Encuentra los mejores suplementos de la región:</p>
+  <div style="display: flex; flex-direction: column; gap: 10px;">
+     <!-- Enlace a Instagram -->
+    <a href="https://www.instagram.com/strong_fitsuplements/?igsh=dmo2NTJnYWIxdXRr&fbclid=IwY2xjawJX2HNleHRuA2FlbQIxMAABHfI1lpqm-HB_FWejxQVAeIaXUb7sNZstBM6bOqJyjeicaffJe_dBabvnIA_aem_QrgTZ-5mg71bfUl3uvY9Zw#" target="_blank" style="text-decoration: none;">
+      <button style="background: #f56040; color: white; border: none; padding: 10px; border-radius: 5px;">INSTAGRAM</button>
+    </a>
+    <!-- Enlace a WhatsApp para pedidos -->
+    <p>Realiza tu pedido via WhatsApp</p>
+    <a href="https://wa.me/523541151541" target="_blank" style="text-decoration: none;">
+      <button style="background: #25D366; color: white; border: none; padding: 10px; border-radius: 5px;">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </button>
+    </a>
+  </div>
+      <!-- Enlace a catalogo suplementos -->
+        <div style="position: relative; width: 100%; height: 0; padding-top: 141.4286%;
+ padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+ border-radius: 8px; will-change: transform;">
+  <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+    src="https://www.canva.com/design/DAGjVFw6uik/rdju9CyNuu7ILs9tx-N51w/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
+  </iframe>
+</div>
+  <!-- Botón para regresar -->
+  <button onclick="mostrarPantalla('pantallaContactos')" style="margin-top: 20px;">
+    VOLVER
+  </button>
+</div>
+  
+
   <!-- Modales -->
 <div id="modalRetos" class="modal oculto">
   <div class="modal-contenido">
