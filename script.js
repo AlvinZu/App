@@ -8,6 +8,8 @@ const imagenesEjercicios = {
         let musculosSeleccionados = [];
         let intensidadSeleccionada = null;
         let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+// Variables globales para la rutina personalizada
+let ejerciciosSeleccionados = [];
 
         // Lista de ejercicios predefinidos
         const ejerciciosPredefinidos = {
@@ -158,7 +160,7 @@ const imagenesEjercicios = {
                 "Sentadilla sumo con mancuerna",
                 "Jalon de pierna lateral con polea baja (aductores)"
               ],
-           pantoriila: [
+           pantorrilla: [
                 "Elevacion de talones en barra smith",
                 "Elevacion de talones en prensa",
                 "Elevacion de talones en costurera",
@@ -193,8 +195,6 @@ const imagenesEjercicios = {
     usuarios.push({ nombre: nombreUsuario, contrasena: contrasena, rutinas: [] });
     localStorage.setItem("usuarios", JSON.stringify(usuarios));
     alert("Usuario registrado exitosamente.");
-    document.getElementById("nombreUsuarioRegistro").value = "";
-    document.getElementById("contrasenaRegistro").value = "";
     mostrarPantalla("pantallaInicioSesion");
 }
 
@@ -430,7 +430,7 @@ function mostrarTab(tabId) {
         function guardarRutina() {
     const nombreRutina = document.getElementById("nombreRutina").value;
     if (!nombreRutina) {
-        alert("Por favor, asigna un nombre a tu rutina.");
+        
         return;
     }
 
@@ -457,7 +457,7 @@ function mostrarTab(tabId) {
     // Limpiar los ejercicios generados después de guardar
     ejerciciosGenerados = [];
     // Limpiar el campo del nombre de la rutina
-    document.getElementById("nombreRutina").value = "";   
+    document.getElementById("nombreRutina").value = "";
     mostrarPantalla("pantalla4");
 }
 
@@ -485,12 +485,28 @@ function mostrarTab(tabId) {
             });
         }
 
- // Función para mostrar los detalles de una rutina con una tabla
+// Función para mostrar los detalles de una rutina con una tabla
 function mostrarDetallesRutina(index) {
     const rutina = usuarioAutenticado.rutinas[index];
     const rutinasContainer = document.getElementById("rutinasGuardadas");
+    rutinasContainer.innerHTML = ""; // Limpiar el contenedor
 
-    // Crear la estructura de la tabla
+    // Crear un título para los detalles
+    const titulo = document.createElement("h2");
+    titulo.textContent = "DETALLES DE LA RUTINA";
+    rutinasContainer.appendChild(titulo);
+
+    // Mostrar el nombre de la rutina
+    const nombreRutina = document.createElement("p");
+    nombreRutina.innerHTML = `<strong>${rutina.nombre}</strong>`;
+    rutinasContainer.appendChild(nombreRutina);
+
+    // Mostrar los músculos trabajados
+    const musculosTrabajados = document.createElement("p");
+    musculosTrabajados.innerHTML = `<strong>Músculos trabajados:</strong> ${rutina.musculos.map(m => m.toUpperCase()).join(", ")}`;
+    rutinasContainer.appendChild(musculosTrabajados);
+
+    // Crear la tabla de ejercicios
     const table = document.createElement("table");
     table.classList.add("tabla-ejercicios");
 
@@ -498,7 +514,7 @@ function mostrarDetallesRutina(index) {
     const thead = document.createElement("thead");
     thead.innerHTML = `
         <tr>
-            <th>Musculo</th>
+            <th>Músculo</th>
             <th>Ejercicio</th>
             <th>Series</th>
             <th>Reps</th>
@@ -508,7 +524,6 @@ function mostrarDetallesRutina(index) {
 
     // Cuerpo de la tabla
     const tbody = document.createElement("tbody");
-
     rutina.ejercicios.forEach((ejerciciosMusculo, i) => {
         ejerciciosMusculo.forEach(ejercicio => {
             const row = document.createElement("tr");
@@ -521,18 +536,9 @@ function mostrarDetallesRutina(index) {
             tbody.appendChild(row);
         });
     });
-
     table.appendChild(tbody);
 
-    // Contenido completo con título y botón de regreso
-    const detallesRutina = `
-        <h2>DETALLES DE LA RUTINA</h2>
-        <strong>${rutina.nombre}</strong>
-        <p><strong>Musculos trabajados:</strong> ${rutina.musculos.map(m => m.toUpperCase()).join(", ")}</p>
-        <p><strong>Ejercicios:</strong></p>
-    `;
-
-    rutinasContainer.innerHTML = detallesRutina;
+    // Agregar la tabla al contenedor
     rutinasContainer.appendChild(table);
 
     // Botón para descargar el PDF
@@ -540,20 +546,12 @@ function mostrarDetallesRutina(index) {
     botonDescargarPDF.textContent = "DESCARGAR PDF";
     botonDescargarPDF.onclick = () => descargarRutinaPDF(index);
     rutinasContainer.appendChild(botonDescargarPDF);
-  
+
     // Botón para regresar
     const botonVolver = document.createElement("button");
     botonVolver.textContent = "VOLVER";
-    botonVolver.onclick = () => mostrarPantalla("pantalla4");
+    botonVolver.onclick = () => cargarRutinasGuardadas();
     rutinasContainer.appendChild(botonVolver);
-  
-  //AGREGA BOTON DE REFERENCIA
-   /* const botonMostrarReferencia = document.createElement("button")
-    botonMostrarReferencia.textContent = "VER REFERENCIAS"
-    botonMostrarReferencia.onclick = () => mostrarReferencias("rutinas");
-    rutinasContainer.appendChild(botonMostrarReferencia); */
- 
-  
 }
 
 // Función para mostrar la pantalla de referencias
@@ -1001,11 +999,144 @@ function calcularCalorias() {
         <p>TMB (Tasa Metabólica Basal): ${tmb.toFixed(2)} kcal</p>
         <p>Calorías Diarias Necesarias: ${caloriasDiarias.toFixed(2)} kcal</p>
         <p>Calorías para tu Objetivo: ${caloriasObjetivo.toFixed(2)} kcal</p>
-        <h3>DISTRIBUCIÓN DE MACRONUTRIENTES:</h3>
+        <h3>DISTRIBUCIÓN DE MACRONUTRIENTES DIARIOS:</h3>
         <p>Proteínas: ${proteinasGramos} g (${(proteinasPorcentaje * 100).toFixed(0)}%)</p>
         <p>Carbohidratos: ${carbohidratosGramos} g (${(carbohidratosPorcentaje * 100).toFixed(0)}%)</p>
         <p>Grasas: ${grasasGramos} g (${(grasasPorcentaje * 100).toFixed(0)}%)</p>
     `;
+}
+
+// Función para descargar el catálogo en PDF
+function descargarCatalogoPDF() {
+    // URL del archivo PDF alojado en línea
+    const urlCatalogo = "TU_ENLACE_AQUI"; // Reemplaza con el enlace de tu archivo
+
+    // Crear un enlace temporal para descargar el archivo
+    const enlace = document.createElement("a");
+    enlace.href = urlCatalogo;
+    enlace.download = "Catalogo_Ropa_Deportiva.pdf"; // Nombre del archivo al descargar
+    enlace.click();
+}
+
+
+// Mostrar ejercicios disponibles según la categoría seleccionada
+document.getElementById("categoriaMuscular").addEventListener("change", function () {
+  const categoria = this.value;
+  const ejerciciosContainer = document.getElementById("ejerciciosDisponibles");
+  ejerciciosContainer.innerHTML = "";
+
+  if (!categoria) return;
+
+  const ejercicios = ejerciciosPredefinidos[categoria];
+  ejercicios.forEach(ejercicio => {
+    const li = document.createElement("li");
+    li.textContent = ejercicio;
+    const botonAgregar = document.createElement("button");
+    botonAgregar.textContent = "Agregar";
+    botonAgregar.onclick = () => agregarEjercicioATabla(ejercicio, categoria); // Pasamos el grupo muscular
+    li.appendChild(botonAgregar);
+    ejerciciosContainer.appendChild(li);
+  });
+});
+
+// Agregar un ejercicio a la tabla
+// Agregar un ejercicio a la tabla con grupo muscular, series y repeticiones
+function agregarEjercicioATabla(ejercicio, musculo) {
+  // Verificar si el ejercicio ya está en la tabla
+  if (ejerciciosSeleccionados.some(item => item.ejercicio === ejercicio)) {
+    alert("Este ejercicio ya está en tu rutina.");
+    return;
+  }
+
+  // Obtener series y repeticiones según la intensidad seleccionada
+  const series = obtenerNumeroAleatorioSeries(intensidadSeleccionada);
+  const repeticiones = obtenerNumeroAleatorioRepeticiones(intensidadSeleccionada);
+
+  // Crear un objeto con la información del ejercicio
+  const ejercicioCompleto = {
+    ejercicio: ejercicio,
+    musculo: musculo,
+    series: series,
+    repeticiones: repeticiones
+  };
+
+  // Agregar el ejercicio a la lista de ejercicios seleccionados
+  ejerciciosSeleccionados.push(ejercicioCompleto);
+
+  // Actualizar la tabla
+  actualizarTablaEjercicios();
+}
+
+// Actualizar la tabla de ejercicios seleccionados
+function actualizarTablaEjercicios() {
+  const tbody = document.querySelector("#tablaEjerciciosSeleccionados tbody");
+  tbody.innerHTML = "";
+
+  ejerciciosSeleccionados.forEach((item, index) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td>${item.musculo.toUpperCase()}</td>
+      <td>${item.ejercicio}</td>
+      <td>${item.series}</td>
+      <td>${item.repeticiones}</td>
+      <td><button onclick="eliminarEjercicio(${index})">Eliminar</button></td>
+    `;
+    tbody.appendChild(row);
+  });
+}
+
+// Eliminar un ejercicio de la tabla
+function eliminarEjercicio(index) {
+  ejerciciosSeleccionados.splice(index, 1);
+  actualizarTablaEjercicios();
+}
+
+// Función para guardar una rutina personalizada
+function guardarRutinaPersonalizada() {
+    const nombreRutina = document.getElementById("nombreRutinaPersonalizada").value.trim();
+    if (!nombreRutina || ejerciciosSeleccionados.length === 0) {
+        alert("Por favor, asigna un nombre a tu rutina y selecciona al menos un ejercicio.");
+        return;
+    }
+
+    // Crear la estructura de la rutina
+    const rutina = {
+        nombre: nombreRutina,
+        musculos: [], // Array de músculos únicos
+        ejercicios: [] // Array de arrays de ejercicios por músculo
+    };
+
+    // Agrupar ejercicios por músculo
+    const ejerciciosPorMusculo = {};
+    ejerciciosSeleccionados.forEach(ejercicio => {
+        if (!ejerciciosPorMusculo[ejercicio.musculo]) {
+            ejerciciosPorMusculo[ejercicio.musculo] = [];
+            rutina.musculos.push(ejercicio.musculo); // Agregar el músculo al array de músculos
+        }
+        ejerciciosPorMusculo[ejercicio.musculo].push({
+            ejercicio: ejercicio.ejercicio,
+            series: ejercicio.series,
+            repeticiones: ejercicio.repeticiones
+        });
+    });
+
+    // Convertir el objeto en un array de arrays
+    rutina.ejercicios = rutina.musculos.map(musculo => ejerciciosPorMusculo[musculo]);
+
+    // Guardar la rutina
+    usuarioAutenticado.rutinas.push(rutina);
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+    alert("Rutina guardada exitosamente.");
+
+    // Limpiar campos
+    document.getElementById("nombreRutinaPersonalizada").value = "";
+    document.getElementById("categoriaMuscular").value = "";
+    document.getElementById("ejerciciosDisponibles").innerHTML = "";
+    ejerciciosSeleccionados = [];
+    actualizarTablaEjercicios();
+
+    // Redirigir a la pantalla de rutinas guardadas
+    mostrarPantalla("pantalla4");
 }
 
         // Función para cerrar sesión
