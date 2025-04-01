@@ -44,7 +44,11 @@
         <div class="musculos" id="contenedorMusculos">
             <!-- Los músculos se generarán dinámicamente -->
         </div>
-        <button onclick="mostrarPantalla('pantalla3');" style="background: #4caf50;">GENERAR</button>
+        <button onclick="mostrarPantalla('pantalla3')" style="background: #4caf50;">GENERAR</button>
+      <!-- Botón en la pantalla de selección de músculos -->
+<button onclick="mostrarPantalla('pantallaRutinaPersonalizada')" style="background: #EA8709;">
+    CREA TU RUTINA
+</button>
         <button onclick="mostrarPantalla('pantallaIntensidad')">ATRÁS</button>
         
         <button onclick="mostrarPantalla('pantalla4')"style="background: #ff9800;">RUTINAS GUARDADAS</button>
@@ -53,6 +57,63 @@
         MEJORA TU EXPERIENCIA
     </button>
     </div>
+  
+  <!-- Pantalla de Rutina Personalizada -->
+<div id="pantallaRutinaPersonalizada" class="pantalla oculto">
+  <h1>RUTINA PERSONALIZADA</h1>
+  
+  <!-- Sección de selección de músculos -->
+  <div class="selector-contenedor">
+    <h3>Selecciona un grupo muscular:</h3>
+    <select id="categoriaMuscular" class="selector-moderno">
+      <option value="">-- Elige un grupo muscular --</option>
+      <option value="pecho">PECHO</option>
+      <option value="triceps">TRICEPS</option>
+      <option value="biceps">BICEPS</option>
+      <option value="espalda">ESPALDA</option>
+      <option value="hombro">HOMBRO</option>
+      <option value="pierna">PIERNA</option>
+      <option value="femoral">FEMORAL</option>
+      <option value="gluteo">GLUTEO</option>
+      <option value="entrepierna">ENTREPIERNA</option>
+      <option value="abdomen">ABDOMEN</option>
+      <option value="pantorrilla">PANTORRILLA</option>
+    </select>
+  </div>
+
+  <!-- Lista de ejercicios disponibles -->
+  <div>
+    <h3>Ejercicios disponibles:</h3>
+    <ul id="ejerciciosDisponibles"></ul>
+  </div>
+
+  <!-- Tabla de ejercicios seleccionados -->
+  <div>
+    <h3>TU RUTINA:</h3>
+    <table id="tablaEjerciciosSeleccionados" class="tabla-ejercicios">
+      <thead>
+        <tr>
+          <th>Musculo</th>
+          <th>Ejercicio</th>
+          <th>Series</th>
+          <th>Reps</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <!-- Nombre de la rutina y botón para guardar -->
+  <div>
+    <label for="nombreRutinaPersonalizada">Nombre de la rutina:</label>
+    <input type="text" id="nombreRutinaPersonalizada" placeholder="Ej. Rutina Pecho y Tríceps" />
+    <button onclick="guardarRutinaPersonalizada()"style="background: #4caf50;">GUARDAR</button>
+  </div>
+
+  <!-- Botón para regresar -->
+  <button onclick="mostrarPantalla('pantalla2')">VOLVER</button>
+</div>
 
     <!-- Pantalla 3: Mostrar Ejercicios -->
     <div id="pantalla3" class="pantalla oculto">
@@ -88,17 +149,17 @@
     <div id="pantallamejoraexperiencia"></div>
     <div class="contenedor-mejoras">
         <button onclick="abrirModal('modalRetos')"style="background: #FF5733;">RETOS</button>
-        <button onclick="abrirModal('modalSuplementacion')"style="background: #FF5733;">SUPLEMENTACIÓN</button>
+        <button onclick="abrirModal('modalSuplementacion')"style="background: #FF8065;">SUPLEMENTACIÓN</button>
         <button onclick="abrirModal('modalNutricion')"style="background: #FF5733;">NUTRICIÓN</button>
-      <button onclick="abrirModal('modalListaCompras')"style="background: #FF5733;">LISTA DE COMPRAS</button>
+      <button onclick="abrirModal('modalListaCompras')"style="background: #FF8065;">LISTA DE COMPRAS</button>
       <!-- Botón para abrir la Calculadora de Calorías -->
 <button onclick="abrirModal('modalCalculadoraCalorias')" style="background: #FF5733;">CALCULADORA DE CALORÍAS</button>
       <!-- Botón para abrir el modal de Ropa Deportiva -->
-<button onclick="abrirModal('modalRopaDeportiva')" style="background: #FF5722;">ROPA DEPORTIVA</button>
+<button onclick="abrirModal('modalRopaDeportiva')" style="background: #FF8065;">ROPA DEPORTIVA</button>
     </div>
 <!-- Botón para abrir la pantalla de Contactos -->
 <button onclick="mostrarPantalla('pantallaContactos')" style="background: #FF5722;">
-    CONTACTOS
+    SALUD
 </button>    
     <button onclick="mostrarPantalla('pantalla2')">ATRÁS</button>
 </div>
@@ -114,6 +175,10 @@
     <!-- Botón para abrir la pantalla de Comprar Suplementos -->
     <button onclick="mostrarPantalla('pantallaSuplementos')" style="background: #ff9800; color: white; border: none; padding: 10px; border-radius: 5px;">
       COMPRAR SUPLEMENTOS
+    </button>
+     <!-- Botón para abrir los datos del Quiropractico -->
+    <button onclick="mostrarPantalla('pantallaQuiropractico')" style="background: #2785FD; color: white; border: none; padding: 10px; border-radius: 5px;">
+      QUIROPRACTICO
     </button>
   </div>
   <!-- Botón para regresar -->
@@ -133,12 +198,12 @@
    <p><strong>Redes Sociales:</strong></p>
   <div style="display: flex; gap: 10px; justify-content: center;">
     <!-- Enlace a WhatsApp -->
-    <a href="https://wa.me/523541137313" target="_blank" style="text-decoration: none;">
+    <a href="https://wa.me/523541137313?text=¡HOLA! ME GUSTARIA AGENDAR UNA CONSULTA, ME PUEDES DAR MAS INFORMACIÓN" target="_blank" style="text-decoration: none;">
       <button style="background: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px;">
         <i class="fab fa-whatsapp"></i> WhatsApp
       </button>
     </a>
-    <!-- Enlace a Instagram -->
+    <!-- Enlace a Facebook -->
     <a href="https://www.facebook.com/profile.php?id=100077483328338" target="_blank" style="text-decoration: none;">
       <button style="background: #0935EA; color: white; border: none; padding: 10px 15px; border-radius: 5px;">
         <i class="fab fa-instagram"></i> Facebook
@@ -162,7 +227,7 @@
     </a>
     <!-- Enlace a WhatsApp para pedidos -->
     <p>Realiza tu pedido via WhatsApp</p>
-    <a href="https://wa.me/523541151541" target="_blank" style="text-decoration: none;">
+    <a href="https://wa.me/523541151541?text=¡HOLA! ME GUSTARIA COMPRAR UN SUPLEMENTO, ME PUEDES DAR MAS INFORMACIÓN" target="_blank" style="text-decoration: none;">
       <button style="background: #25D366; color: white; border: none; padding: 10px; border-radius: 5px;">
         <i class="fab fa-whatsapp"></i> WhatsApp
       </button>
@@ -182,6 +247,34 @@
   </button>
 </div>
   
+  <!-- Pantalla de Datos del Quiropractico -->
+<div id="pantallaQuiropractico" class="pantalla oculto">
+  <h2>QUIROPRACTICO DEPORTIVO</h2>
+  <p><strong>Nombre:</strong> Rigoberto Alvarez Bernal</p>
+  <p><strong>Estudios:</strong> Licenciarura en Fisioterapia y Rehabilitación, Diplomado en Medicina del Futbol ante FIFA, Técnico Auxiliar en Enfermeria.</p>
+  <p><strong>Cedula:</strong> N. 27957</p>
+  <p><strong>Domicilio:</strong> c. Artículo 123 #5, Colonia Jardín, Los Reyes Mich.</p>
+  <p><strong>AGENDA TU CITA VIA WHATSAPP</strong></p>
+   <p><strong>Redes Sociales:</strong></p>
+  <div style="display: flex; gap: 10px; justify-content: center;">
+    <!-- Enlace a WhatsApp -->
+    <a href="https://wa.me/523541075947?text=¡HOLA! ME GUSTARIA AGENDAR UNA CONSULTA, ME PUEDES DAR MAS INFORMACIÓN" target="_blank" style="text-decoration: none;">
+      <button style="background: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px;">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </button>
+    </a>
+    <!-- Enlace a Facebook -->
+    <a href="https://www.facebook.com/QuiroRigoAlvar?mibextid=wwXIfr" target="_blank" style="text-decoration: none;">
+      <button style="background: #0935EA; color: white; border: none; padding: 10px 15px; border-radius: 5px;">
+        <i class="fab fa-instagram"></i> Facebook
+      </button>
+    </a>
+  </div>
+  <!-- Botón para regresar -->
+  <button onclick="mostrarPantalla('pantallaContactos')" style="margin-top: 20px;">
+    VOLVER
+  </button>
+</div>
 
   <!-- Modales -->
 <div id="modalRetos" class="modal oculto">
@@ -311,7 +404,13 @@
     <span class="cerrar" onclick="cerrarModal('modalRopaDeportiva')">&times;</span>
     <h2>CATÁLOGO DE ROPA DEPORTIVA</h2>
     <p>Observa nuestro catálogo de ropa deportiva para mantenerte motivada y a la moda.</p>
-    
+    <p>Realiza tu pedido via WhatsApp.</p>
+    <!-- Enlace a WhatsApp -->
+    <a href="https://wa.me/524434770618?text=¡HOLA! ME GUSTARIA COMPRAR ROPA DEPORTIVA, ME PUEDES DAR MAS INFORMACIÓN" target="_blank" style="text-decoration: none;">
+      <button style="background: #25D366; color: white; border: none; padding: 10px 15px; border-radius: 5px;">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </button>
+    </a>
     
     <div style="position: relative; width: 100%; height: 0; padding-top: 141.4286%;
  padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
@@ -319,7 +418,7 @@
   <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
     src="https://www.canva.com/design/DAGi86bJpks/jFhYc0M406Leq3dAf0B7yQ/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
   </iframe>
-</div>
+  </div>
 
     <script src="script.js"></script> 
 </body>
