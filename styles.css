@@ -1,3 +1,190 @@
+/* Contenedor del selector */
+.selector-contenedor {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Etiqueta del selector */
+.selector-contenedor label {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Estilos generales para el select */
+.selector-moderno {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ff6f61;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    max-width: 300px;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    appearance: none; /* Eliminar el estilo predeterminado del navegador */
+    -webkit-appearance: none; /* Para navegadores basados en WebKit */
+    -moz-appearance: none; /* Para Firefox */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M128%20192l-64-64h128z%22%2F%3E%3C%2Fsvg%3E'); /* Flecha personalizada */
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 12px;
+}
+/* Hover y Focus */
+.selector-moderno:hover,
+.selector-moderno:focus {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #4caf50;
+    transform: scale(1.02); /* Efecto de zoom sutil */
+}
+
+/* Opciones del menú desplegable */
+.selector-moderno option {
+    background: #2a2a40;
+    color: #ffffff;
+    padding: 10px;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.selector-moderno option:hover {
+    background: #4caf50;
+}
+
+/* Estilos generales para los músculos seleccionables */
+#contenedorMusculos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.musculo {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ff6f61;
+    border-radius: 8px;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease;
+    text-transform: uppercase; /* Convertir texto a mayúsculas */
+}
+
+/* Estilos del borde de la lista de ejercicios */
+#ejerciciosDisponibles {
+    list-style-type: none;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    border: 2px solid #ff6f61;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    margin-top: 15px;
+}
+
+/* Estilos para la pantalla de Rutina Personalizada */
+#pantallaRutinaPersonalizada {
+    background: linear-gradient(135deg, #2a2a40, #1e1e2f);
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+#pantallaRutinaPersonalizada h2 {
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+#pantallaRutinaPersonalizada select,
+#pantallaRutinaPersonalizada input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #ff6f61;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+#pantallaRutinaPersonalizada button {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#pantallaRutinaPersonalizada button:hover {
+    background: #e64a19;
+}
+
+#ejerciciosDisponibles {
+    list-style-type: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+#ejerciciosDisponibles li {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 8px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#ejerciciosDisponibles button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#ejerciciosDisponibles button:hover {
+    background: #388e3c;
+}
+
+.tabla-ejercicios {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-ejercicios th,
+.tabla-ejercicios td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tabla-ejercicios button {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tabla-ejercicios button:hover {
+    background: #d32f2f;
+}
+
 /* Estilo para los botones de redes sociales */
 .pantalla a button {
     background: #25D366;
