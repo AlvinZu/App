@@ -46,8 +46,8 @@ let ejerciciosSeleccionados = [];
                 "Patada de triceps con mancuernas",
                 "Press de banca con agarre cerrado",
                 "Patada de triceps con polea baja",
-                "Extensiones de triceps en maquina",
-                "Fondos en maquina ARM EXTENSION",
+                "Fondos en maquina",
+                "Extensiones de triceps en maquina ARM EXTENSION",
                 "Lagartijas diamante"
             ],
             biceps: [
@@ -691,8 +691,8 @@ function mostrarImagen(nombreEjercicio) {
         "Patada de triceps con mancuernas": "https://youtube.com/shorts/8q0bRi6oC4o?si=cKKm-J4pwNDZW70b",
         "Press de banca con agarre cerrado": "https://youtube.com/shorts/1L49Nl3eA9c?si=sk0Cttnhz1RqSpEM",
         "Patada de triceps con polea baja": "https://youtube.com/shorts/35_gCUE3SmM?si=eTAr1_M7knK4fF_I",
-        "Extensiones de triceps en maquina ARM EXTENSION": "https://youtu.be/2ju_MwZjXKE?si=yZB97qLI1gT8KTZn",
         "Fondos en maquina": "https://youtu.be/-tnYdPDikMw?si=1rwns8-XoHUkXyM-",
+        "Extensiones de triceps en maquina ARM EXTENSION": "https://youtu.be/2ju_MwZjXKE?si=yZB97qLI1gT8KTZn",
         "Lagartijas diamante": "https://youtube.com/shorts/JA_VpaY-rVg?si=zEwu2oOrWNBEkWGc",
 
         "Curl con barra recta (Las 21’s)": "https://youtu.be/l0oOf2lftcg?si=qHgJXIxDg8Y3cAG6",
