@@ -47,7 +47,7 @@ let ejerciciosSeleccionados = [];
                 "Press de banca con agarre cerrado",
                 "Patada de triceps con polea baja",
                 "Fondos en maquina",
-                "Extensiones de triceps en maquina ARM EXTENSION",
+                "Fondos en maquina ARM EXTENSION",
                 "Lagartijas diamante"
             ],
             biceps: [
@@ -1000,9 +1000,9 @@ function calcularCalorias() {
         <p>Calorías Diarias Necesarias: ${caloriasDiarias.toFixed(2)} kcal</p>
         <p>Calorías para tu Objetivo: ${caloriasObjetivo.toFixed(2)} kcal</p>
         <h3>DISTRIBUCIÓN DE MACRONUTRIENTES DIARIOS:</h3>
-        <p>Proteínas: ${proteinasGramos} g (${(proteinasPorcentaje * 100).toFixed(0)}%)</p>
-        <p>Carbohidratos: ${carbohidratosGramos} g (${(carbohidratosPorcentaje * 100).toFixed(0)}%)</p>
-        <p>Grasas: ${grasasGramos} g (${(grasasPorcentaje * 100).toFixed(0)}%)</p>
+        <p>💪Proteínas: ${proteinasGramos} g (${(proteinasPorcentaje * 100).toFixed(0)}%)</p>
+        <p>🍚Carbohidratos: ${carbohidratosGramos} g (${(carbohidratosPorcentaje * 100).toFixed(0)}%)</p>
+        <p>🔥Grasas: ${grasasGramos} g (${(grasasPorcentaje * 100).toFixed(0)}%)</p>
     `;
 }
 
