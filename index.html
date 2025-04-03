@@ -148,18 +148,18 @@
     <h1>MEJORA TU EXPERIENCIA</h1>
     <div id="pantallamejoraexperiencia"></div>
     <div class="contenedor-mejoras">
-        <button onclick="abrirModal('modalRetos')"style="background: #FF5733;">RETOS</button>
-        <button onclick="abrirModal('modalSuplementacion')"style="background: #FF8065;">SUPLEMENTACIÓN</button>
-        <button onclick="abrirModal('modalNutricion')"style="background: #FF5733;">NUTRICIÓN</button>
-      <button onclick="abrirModal('modalListaCompras')"style="background: #FF8065;">LISTA DE COMPRAS</button>
+        <button onclick="abrirModal('modalRetos')"style="background: #FF5733;">🏆 RETOS</button>
+        <button onclick="abrirModal('modalSuplementacion')"style="background: #FF8065;">✨ SUPLEMENTACIÓN</button>
+        <button onclick="abrirModal('modalNutricion')"style="background: #FF5733;">🍎 NUTRICIÓN</button>
+      <button onclick="abrirModal('modalListaCompras')"style="background: #FF8065;">📗 LISTA DE COMPRAS</button>
       <!-- Botón para abrir la Calculadora de Calorías -->
-<button onclick="abrirModal('modalCalculadoraCalorias')" style="background: #FF5733;">CALCULADORA DE CALORÍAS</button>
+<button onclick="abrirModal('modalCalculadoraCalorias')" style="background: #FF5733;">🎯 CALCULADORA DE CALORÍAS</button>
       <!-- Botón para abrir el modal de Ropa Deportiva -->
-<button onclick="abrirModal('modalRopaDeportiva')" style="background: #FF8065;">ROPA DEPORTIVA</button>
+<button onclick="abrirModal('modalRopaDeportiva')" style="background: #FF8065;">💎 ROPA DEPORTIVA</button>
     </div>
 <!-- Botón para abrir la pantalla de Contactos -->
 <button onclick="mostrarPantalla('pantallaContactos')" style="background: #FF5722;">
-    SALUD
+    💡 SALUD
 </button>    
     <button onclick="mostrarPantalla('pantalla2')">ATRÁS</button>
 </div>
@@ -170,15 +170,15 @@
   <div style="display: flex; flex-direction: column; gap: 10px;">
     <!-- Botón para abrir los datos del Nutriólogo -->
     <button onclick="mostrarPantalla('pantallaNutriologo')" style="background: #4CAF50; color: white; border: none; padding: 10px; border-radius: 5px;">
-      NUTRIÓLOGO
+      🍎 NUTRIÓLOGO
     </button>
     <!-- Botón para abrir la pantalla de Comprar Suplementos -->
     <button onclick="mostrarPantalla('pantallaSuplementos')" style="background: #ff9800; color: white; border: none; padding: 10px; border-radius: 5px;">
-      COMPRAR SUPLEMENTOS
+      ✨ COMPRAR SUPLEMENTOS
     </button>
      <!-- Botón para abrir los datos del Quiropractico -->
     <button onclick="mostrarPantalla('pantallaQuiropractico')" style="background: #2785FD; color: white; border: none; padding: 10px; border-radius: 5px;">
-      QUIROPRACTICO
+      ⭐ QUIROPRACTICO
     </button>
   </div>
   <!-- Botón para regresar -->
@@ -359,40 +359,40 @@
 <div id="modalCalculadoraCalorias" class="modal oculto">
   <div class="modal-contenido">
     <span class="cerrar" onclick="cerrarModal('modalCalculadoraCalorias')">&times;</span>
-    <h2>CALCULADORA DE CALORÍAS</h2>
+    <h2>🔥CALCULADORA DE CALORÍAS🔥</h2>
     <form id="formularioCalorias">
-      <label for="edad">Edad:</label>
+      <label for="edad">🎂 Edad:</label>
       <input type="number" id="edad" placeholder="Ejemplo: 25" required>
 
-      <label for="peso">Peso (kg):</label>
+      <label for="peso">📏 Peso (kg):</label>
       <input type="number" id="peso" placeholder="Ejemplo: 70" required>
 
-      <label for="altura">Altura (cm):</label>
+      <label for="altura">📐 Altura (cm):</label>
       <input type="number" id="altura" placeholder="Ejemplo: 170" required>
 
       <label for="genero">Género:</label>
       <select id="genero" required>
-        <option value="hombre">Hombre</option>
-        <option value="mujer">Mujer</option>
+        <option value="hombre">👨 Hombre</option>
+        <option value="mujer">👩 Mujer</option>
       </select>
 
       <label for="actividad">Nivel de Actividad:</label>
       <select id="actividad" required>
         <option value="1.2">Sedentario (poco o ningún ejercicio)</option>
-        <option value="1.375">Ligero (ejercicio 1-3 días/semana)</option>
-        <option value="1.55">Moderado (ejercicio 3-5 días/semana)</option>
-        <option value="1.725">Activo (ejercicio 6-7 días/semana)</option>
-        <option value="1.9">Muy Activo (entrenamiento intenso 2 veces/día)</option>
+        <option value="1.375">🚶 Ligero (ejercicio 1-3 días/semana)</option>
+        <option value="1.55">🏃 Moderado (ejercicio 3-5 días/semana)</option>
+        <option value="1.725">💪 Activo (ejercicio 6-7 días/semana)</option>
+        <option value="1.9">🔥Muy Activo (entrenamiento intenso 2 veces/día)</option>
       </select>
 
       <label for="objetivo">Objetivo:</label>
       <select id="objetivo" required>
-        <option value="perder">Perder Grasa</option>
-        <option value="ganar">Aumentar Masa Muscular</option>
+        <option value="perder">🔥 Perder Grasa</option>
+        <option value="ganar">💪 Aumentar Masa Muscular</option>
         
       </select>
 
-      <button type="button" onclick="calcularCalorias()">CALCULAR</button>
+      <button type="button" onclick="calcularCalorias()">⚡ CALCULAR ⚡</button>
     </form>
     <div id="resultadoCalorias"></div>
   </div>
