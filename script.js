@@ -543,13 +543,13 @@ function mostrarDetallesRutina(index) {
 
     // Botón para descargar el PDF
     const botonDescargarPDF = document.createElement("button");
-    botonDescargarPDF.textContent = "DESCARGAR PDF";
+    botonDescargarPDF.textContent = "📥 DESCARGAR PDF";
     botonDescargarPDF.onclick = () => descargarRutinaPDF(index);
     rutinasContainer.appendChild(botonDescargarPDF);
 
     // Botón para regresar
     const botonVolver = document.createElement("button");
-    botonVolver.textContent = "VOLVER";
+    botonVolver.textContent = "↩️ VOLVER";
     botonVolver.onclick = () => cargarRutinasGuardadas();
     rutinasContainer.appendChild(botonVolver);
 }
@@ -1032,7 +1032,7 @@ document.getElementById("categoriaMuscular").addEventListener("change", function
     const li = document.createElement("li");
     li.textContent = ejercicio;
     const botonAgregar = document.createElement("button");
-    botonAgregar.textContent = "Agregar";
+    botonAgregar.textContent = "➕ Agregar";
     botonAgregar.onclick = () => agregarEjercicioATabla(ejercicio, categoria); // Pasamos el grupo muscular
     li.appendChild(botonAgregar);
     ejerciciosContainer.appendChild(li);
