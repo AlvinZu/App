@@ -161,9 +161,84 @@
 <button onclick="mostrarPantalla('pantallaContactos')" style="background: #FF5722;">
     💡 SALUD
 </button>    
+  <!-- Botón para abrir la pantalla de Contactos -->
+<button onclick="mostrarPantalla('calendarView')" style="background: #FF8065;">
+    💪 NOTAS FIT
+</button>    
     <button onclick="mostrarPantalla('pantalla2')">↩️ ATRÁS</button>
 </div>
 
+  
+          <!-- Pantalla Calendario -->
+        <div id="calendarView" class="pantalla oculto">
+            <h2>🔥REGISTRA TUS ENTRENAMIENTOS🔥</h2>
+            <div class="calendar-header">
+              
+                <button id="prevMonth">&lt</button>
+                <h2 id="currentMonth"></h2>
+                <button id="nextMonth">&gt</button>
+            </div>
+            <div id="calendar"></div>
+          <button id="showHistory">📊 Historial</button>
+          <h2>🔥MIRAGE GYM🔥</h2>
+          <button onclick="mostrarPantalla('pantallaMejoraExperiencia')">↩️ ATRÁS</button>
+        </div>
+      
+      <!-- Pantalla Historial -->
+<div id="historyView" style="display: none;">
+    <div class="history-header">
+        <button id="backFromHistory">🏠 Volver</button>
+        <h2>💪 Historial de Progresos</h2>
+    </div>
+    
+    <div class="filter-section">
+        <select id="historyMuscleFilter">
+            <option value="">Seleccionar grupo muscular</option>
+            <!-- Opciones se llenarán dinámicamente -->
+        </select>
+    </div>
+    
+    <div id="historyContent"></div>
+</div>
+
+        <!-- Pantalla Detalles del Entrenamiento -->
+        <div id="workoutView" style="display: none;">
+            <div class="workout-header">
+                <button id="backToCalendar">🏠 Volver</button>
+                <h2 id="workoutDate"></h2>
+                  <h1>🔥NOTAS FIT🔥</h1>
+            </div>
+            
+            <div class="exercise-form">
+    <select id="muscleGroup">
+        <option value="">💪 Seleccionar grupo muscular</option>
+        <option>💪Pecho</option>
+        <option>💪Espalda</option>
+        <option>💪Biceps</option>
+        <option>💪Triceps</option>
+        <option>💪Hombro</option>
+        <option>💪Pierna</option>
+        <option>💪Gluteo</option>
+        <option>💪Femoral</option>
+        <option>💪Entrepierna</option>
+        <option>💪Pantorrilla</option>
+    </select>
+               <label>Nombre del ejercicio</label> 
+                <input type="text" id="exerciseName" placeholder="Nombre del ejercicio">
+              <label>Peso (Kg)</label>
+                <input type="number" id="exerciseWeight" placeholder="Peso (kg)">
+              <label>N. de serie</label>
+                <input type="number" id="exerciseSeries" placeholder="N° de serie">
+              <label>Repeticiones</label>
+                <input type="number" id="exerciseReps" placeholder="Repeticiones">
+                <button onclick="addExercise()">Agregar Ejercicio</button>
+            </div>
+            
+            <div id="exercisesList"></div>
+        </div>
+    </div>
+  
+  
 <!-- Pantalla de Contactos -->
 <div id="pantallaContactos" class="pantalla oculto">
   <h2>CONTACTOS</h2>
