@@ -10,6 +10,8 @@ const imagenesEjercicios = {
         let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 // Variables globales para la rutina personalizada
 let ejerciciosSeleccionados = [];
+ let currentDate = new Date();
+ let selectedDate = null;
 
         // Lista de ejercicios predefinidos
         const ejerciciosPredefinidos = {
@@ -1138,6 +1140,292 @@ function guardarRutinaPersonalizada() {
     // Redirigir a la pantalla de rutinas guardadas
     mostrarPantalla("pantalla4");
 }
+
+// Logica para pantallas de Notas FIT y CALENDARIO 
+document.addEventListener('DOMContentLoaded', () => {
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    document.getElementById('currentMonth').textContent = 
+        `${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.getFullYear()}`;
+    
+    document.getElementById('prevMonth').addEventListener('click', () => changeMonth(-1));
+    document.getElementById('nextMonth').addEventListener('click', () => changeMonth(1));
+    document.getElementById('backToCalendar').addEventListener('click', showCalendarView);
+    document.getElementById('showHistory').addEventListener('click', showHistoryView);
+    document.getElementById('backFromHistory').addEventListener('click', () => {
+        document.getElementById('historyView').style.display = 'none';
+        document.getElementById('calendarView').style.display = 'block';
+    });
+});
+
+function generateCalendar(year, month) {
+    const calendar = document.getElementById('calendar');
+    calendar.innerHTML = '';
+    
+    const firstDay = new Date(year, month, 1);
+    const lastDay = new Date(year, month + 1, 0);
+    
+    for(let i = 0; i < firstDay.getDay(); i++) {
+        calendar.appendChild(createDayElement(''));
+    }
+    
+    for(let day = 1; day <= lastDay.getDate(); day++) {
+        const date = new Date(year, month, day);
+        calendar.appendChild(createDayElement(day, date));
+    }
+}
+
+function createDayElement(day, date = null) {
+    const div = document.createElement('div');
+    div.className = 'day';
+    if(date) {
+        div.textContent = day;
+        div.addEventListener('click', () => showWorkoutView(date));
+        
+        const workouts = getWorkoutsForDate(date);
+        if(workouts.length > 0) {
+            div.style.backgroundColor = '#c8e6c9';
+        }
+    }
+    return div;
+}
+
+function changeMonth(offset) {
+    currentDate.setMonth(currentDate.getMonth() + offset);
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+    document.getElementById('currentMonth').textContent = 
+        `${currentDate.toLocaleString('default', { month: 'long' })} ${currentDate.getFullYear()}`;
+}
+
+function showWorkoutView(date) {
+    selectedDate = date;
+    document.getElementById('calendarView').style.display = 'none';
+    document.getElementById('workoutView').style.display = 'block';
+    document.getElementById('workoutDate').textContent = date.toLocaleDateString();
+    loadExercises();
+}
+
+function showCalendarView() {
+    document.getElementById('calendarView').style.display = 'block';
+    document.getElementById('workoutView').style.display = 'none';
+    document.getElementById('historyView').style.display = 'none';
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+}
+
+function addExercise() {
+    const muscleGroup = document.getElementById('muscleGroup').value;
+    if(!muscleGroup) {
+        alert('Debes seleccionar un grupo muscular');
+        return;
+    }
+
+    const exercise = {
+        muscleGroup: muscleGroup,
+        name: document.getElementById('exerciseName').value,
+        weight: document.getElementById('exerciseWeight').value,
+        series: document.getElementById('exerciseSeries').value,
+        reps: document.getElementById('exerciseReps').value,
+        timestamp: new Date().getTime()
+    };
+    
+    if(!exercise.name || !exercise.weight || !exercise.series || !exercise.reps) {
+        alert('Completa todos los campos del ejercicio');
+        return;
+    }
+    
+    const workouts = getWorkoutsForDate(selectedDate);
+    workouts.push(exercise);
+    localStorage.setItem(selectedDate.toDateString(), JSON.stringify(workouts));
+    
+    loadExercises();
+    clearForm();
+}
+
+function loadExercises() {
+    const workouts = getWorkoutsForDate(selectedDate);
+    const container = document.getElementById('exercisesList');
+    container.innerHTML = '';
+    
+    const groupedExercises = workouts.reduce((groups, exercise) => {
+        const group = exercise.muscleGroup;
+        if(!groups[group]) groups[group] = [];
+        groups[group].push(exercise);
+        return groups;
+    }, {});
+    
+    Object.keys(groupedExercises).forEach(group => {
+        const groupSection = document.createElement('div');
+        groupSection.className = 'muscle-group';
+        groupSection.innerHTML = `<h3>${group}</h3>`;
+        
+        groupedExercises[group].forEach(exercise => {
+            const exerciseDiv = document.createElement('div');
+            exerciseDiv.className = 'exercise-item';
+            exerciseDiv.innerHTML = `
+                <strong>${exercise.name}</strong><br>
+                Peso: ${exercise.weight} kg<br>
+                Serie: ${exercise.series}<br>
+                Reps: ${exercise.reps}
+                <button class="delete-btn" onclick="deleteExercise(${exercise.timestamp})">Eliminar</button>
+            `;
+            groupSection.appendChild(exerciseDiv);
+        });
+        
+        container.appendChild(groupSection);
+    });
+}
+
+function deleteExercise(timestamp) {
+    const workouts = getWorkoutsForDate(selectedDate);
+    const updatedWorkouts = workouts.filter(ex => ex.timestamp !== timestamp);
+    
+    if(updatedWorkouts.length > 0) {
+        localStorage.setItem(selectedDate.toDateString(), JSON.stringify(updatedWorkouts));
+    } else {
+        localStorage.removeItem(selectedDate.toDateString());
+    }
+    
+    loadExercises();
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+}
+
+function showHistoryView() {
+    document.getElementById('calendarView').style.display = 'none';
+    document.getElementById('historyView').style.display = 'block';
+    populateMuscleFilter();
+    loadHistory();
+}
+
+function populateMuscleFilter() {
+    const filter = document.getElementById('historyMuscleFilter');
+    filter.innerHTML = '<option value="">Todos los grupos</option>';
+    
+    const allMuscles = new Set();
+    
+    for(let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const storedData = localStorage.getItem(key);
+        let workouts = [];
+        
+        try {
+            workouts = JSON.parse(storedData) || [];
+        } catch {
+            continue;
+        }
+        
+        if(Array.isArray(workouts)) {
+            workouts.forEach(exercise => {
+                if(exercise.muscleGroup) {
+                    allMuscles.add(exercise.muscleGroup);
+                }
+            });
+        }
+    }
+    
+    allMuscles.forEach(muscle => {
+        const option = document.createElement('option');
+        option.value = muscle;
+        option.textContent = muscle;
+        filter.appendChild(option);
+    });
+    
+    filter.addEventListener('change', loadHistory);
+}
+
+function loadHistory() {
+    const selectedMuscle = document.getElementById('historyMuscleFilter').value;
+    const historyContent = document.getElementById('historyContent');
+    historyContent.innerHTML = '';
+    
+    const allData = [];
+    
+    for(let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const storedData = localStorage.getItem(key);
+        let workouts = [];
+        
+        try {
+            workouts = JSON.parse(storedData) || [];
+        } catch {
+            continue;
+        }
+        
+        if(Array.isArray(workouts)) {
+            workouts.forEach(exercise => {
+                if(!selectedMuscle || exercise.muscleGroup === selectedMuscle) {
+                    allData.push({
+                        date: new Date(key),
+                        dateString: key,
+                        ...exercise
+                    });
+                }
+            });
+        }
+    }
+    
+    allData.sort((a, b) => b.date - a.date);
+    
+    if(allData.length === 0) {
+        historyContent.innerHTML = '<p>No hay registros para este filtro</p>';
+        return;
+    }
+    
+    allData.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'history-exercise';
+        div.innerHTML = `
+            <div class="history-date">${item.date.toLocaleDateString()}</div>
+            <strong>${item.muscleGroup} - ${item.name}</strong><br>
+            Peso: ${item.weight} kg<br>
+            Serie: ${item.series}<br>
+            Reps: ${item.reps}
+            <button class="delete-btn" onclick="deleteExerciseFromHistory(${item.timestamp}, '${item.dateString}')">Eliminar</button>
+        `;
+        historyContent.appendChild(div);
+    });
+}
+
+function deleteExerciseFromHistory(timestamp, dateString) {
+    const storedData = localStorage.getItem(dateString);
+    let workouts = [];
+    
+    try {
+        workouts = JSON.parse(storedData) || [];
+    } catch {
+        workouts = [];
+    }
+    
+    const updatedWorkouts = workouts.filter(ex => ex.timestamp !== timestamp);
+    
+    if(updatedWorkouts.length > 0) {
+        localStorage.setItem(dateString, JSON.stringify(updatedWorkouts));
+    } else {
+        localStorage.removeItem(dateString);
+    }
+    
+    loadHistory();
+    if(selectedDate && dateString === selectedDate.toDateString()) {
+        loadExercises();
+    }
+    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+}
+
+function getWorkoutsForDate(date) {
+    const storedData = localStorage.getItem(date.toDateString());
+    try {
+        return JSON.parse(storedData) || [];
+    } catch {
+        return [];
+    }
+}
+
+function clearForm() {
+    document.getElementById('muscleGroup').value = '';
+    document.getElementById('exerciseName').value = '';
+    document.getElementById('exerciseWeight').value = '';
+    document.getElementById('exerciseSeries').value = '';
+    document.getElementById('exerciseReps').value = '';
+}
+
 
         // Función para cerrar sesión
         function cerrarSesion() {
