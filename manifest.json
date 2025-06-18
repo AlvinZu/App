@@ -1,0 +1,20 @@
+{
+  "name": "Mirage Gym",
+  "short_name": "MirageGym",
+  "start_url": "https://alvinzu.github.io/App/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e3a8a",
+  "icons": [
+    {
+      "src": "Logo.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    },
+    {
+      "src": "Logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg"
+    }
+  ]
+}
