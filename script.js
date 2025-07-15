@@ -1345,6 +1345,19 @@ function populateMuscleFilter() {
     filter.addEventListener('change', loadHistory);
 }
 
+// Registro del Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+      })
+      .catch(err => {
+        console.log('ServiceWorker registration failed: ', err);
+      });
+  });
+}
+
 function loadHistory() {
     const selectedMuscle = document.getElementById('historyMuscleFilter').value;
     const historyContent = document.getElementById('historyContent');
