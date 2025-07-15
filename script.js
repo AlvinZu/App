@@ -230,25 +230,33 @@ let ejerciciosSeleccionados = [];
         pantalla.style.display = 'none';
     });
 
-    // Luego mostrar solo la deseada
-    document.getElementById(id).style.display = 'block';
-
-
-            if (id === "pantalla2") {
-                cargarMusculos();
-              // Limpiar ejercicios generados al regresar a la pantalla de selección de músculos
-              ejerciciosGenerados = [];
-            } else if (id === "pantalla3") {
-                mostrarEjercicios();
-            } else if (id === "pantalla4") {
-                cargarRutinasGuardadas();
-              } else if (id === "workoutView") {
-                pantallamejoraexperiencia();
-            } else  if (id === "pantallaMejoraExperiencia") {
-              pantallamejoraexperiencia();
-        // Puedes agregar lógica adicional aquí si es necesario
+    // Muestra la pantalla deseada
+    const pantallaActual = document.getElementById(id);
+    if (pantallaActual) {
+        pantallaActual.style.display = 'block';
     }
-        }
+
+    // --- LÍNEAS NUEVAS ---
+    // Agrega un nuevo estado al historial del navegador.
+    // Esto hace que el botón/gesto de retroceso funcione.
+    const state = { screen: id };
+    const title = id; // El título no es muy usado, pero es bueno tenerlo
+    const url = `#${id}`; // Cambia la URL para reflejar la pantalla actual
+    history.pushState(state, title, url);
+    // --- FIN DE LÍNEAS NUEVAS ---
+
+    if (id === "pantalla2") {
+        cargarMusculos();
+        ejerciciosGenerados = [];
+    } else if (id === "pantalla3") {
+        mostrarEjercicios();
+    } else if (id === "pantalla4") {
+        cargarRutinasGuardadas();
+    } else if (id === "pantallaMejoraExperiencia") {
+        pantallamejoraexperiencia();
+    }
+}
+
 
 function volverAMejoraExperiencia() {
     document.getElementById("workoutView").style.display = "none";
@@ -1357,6 +1365,23 @@ if ('serviceWorker' in navigator) {
       });
   });
 }
+
+// --- Detector para el gesto de retroceso en IOS ---
+// Escucha el evento 'popstate', que se dispara con el gesto/botón de retroceso del navegador.
+window.addEventListener('popstate', (event) => {
+    if (event.state && event.state.screen) {
+        // Oculta todas las pantallas
+        document.querySelectorAll('.pantalla').forEach(pantalla => {
+            pantalla.style.display = 'none';
+        });
+        // Muestra la pantalla guardada en el historial sin agregar una nueva entrada
+        const pantallaAnterior = document.getElementById(event.state.screen);
+        if (pantallaAnterior) {
+            pantallaAnterior.style.display = 'block';
+        }
+    }
+});
+
 
 function loadHistory() {
     const selectedMuscle = document.getElementById('historyMuscleFilter').value;
