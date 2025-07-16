@@ -1,4 +1,127 @@
 /* ================================================= */
+/* ESTILO PARA CHECKBOX "MOSTRAR CONTRASEÑA"         */
+/* ================================================= */
+
+.show-password-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinea a la izquierda */
+    margin-bottom: 20px;
+    margin-top: -10px; /* Reduce el espacio después del campo de contraseña */
+    padding-left: 5px;
+}
+
+.show-password-container input[type="checkbox"] {
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    accent-color: #ffc300; /* Color del check cuando está marcado */
+    cursor: pointer;
+}
+
+.show-password-container label {
+    color: #b0b0b0;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* ================================================= */
+/* NUEVOS ESTILOS PARA LOGIN Y REGISTRO              */
+/* ================================================= */
+
+/* Tarjeta principal para autenticación */
+.auth-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 30px 25px;
+    width: 100%;
+    max-width: 400px; /* Ancho máximo de la tarjeta */
+    margin: 0 auto; /* Centra la tarjeta */
+}
+
+/* Encabezado con logo y títulos */
+.auth-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.auth-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.auth-header h1 {
+    color: #fff;
+    margin: 0 0 5px 0;
+}
+
+.auth-header p {
+    color: #b0b0b0;
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Grupo de input con ícono */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+/* Estilo para los campos de texto */
+.auth-form input {
+    width: 100%;
+    padding: 15px 15px 15px 45px !important; /* Padding izquierdo para el ícono */
+    background: rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 12px !important;
+    color: #fff !important;
+    font-size: 1rem !important;
+}
+
+.auth-form input:focus {
+    outline: none;
+    border-color: #ffc300 !important;
+    box-shadow: 0 0 0 3px rgba(255, 195, 0, 0.3);
+}
+
+/* Botón de acción principal */
+.auth-actions {
+    margin-top: 10px;
+}
+
+/* Pie de la tarjeta con link para cambiar de pantalla */
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+}
+
+.auth-footer p {
+    color: #aaa;
+    margin: 0;
+}
+
+.auth-footer a {
+    color: #ffc300;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ================================================= */
 /* NUEVOS ESTILOS PARA PANTALLA RUTINAS GUARDADAS    */
 /* ================================================= */
 
