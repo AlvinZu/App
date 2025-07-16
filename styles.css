@@ -1,3 +1,619 @@
+/* ================================================= */
+/* NUEVOS ESTILOS PARA PANTALLA RUTINAS GUARDADAS    */
+/* ================================================= */
+
+/* Contenedor si no hay rutinas */
+.no-rutinas {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    color: #b0b0b0;
+}
+
+/* Grid para organizar las tarjetas */
+.grid-rutinas {
+    display: grid;
+    grid-template-columns: 1fr; /* Una columna por defecto */
+    gap: 15px;
+}
+
+/* Estilo de cada tarjeta de rutina */
+.rutina-guardada-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.rutina-guardada-card:hover {
+    transform: scale(1.02);
+    border-color: #ffc300;
+}
+
+.card-header h3 {
+    margin: 0 0 8px 0;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* Estilos para las etiquetas de músculos */
+.card-musculos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.card-musculos span {
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #ddd;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+/* Contenedor para los botones de la tarjeta */
+.card-acciones {
+    display: flex;
+    gap: 10px;
+}
+
+/* Estilo de los botones dentro de la tarjeta */
+.card-acciones button {
+    padding: 8px 15px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+}
+
+.card-acciones .btn-ver {
+    background-color: #ffc300;
+    color: #1e1e2f;
+}
+
+.card-acciones .btn-ver:hover {
+    background-color: #ffd659;
+}
+
+.card-acciones .btn-eliminar {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+}
+
+.card-acciones .btn-eliminar:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* ================================================= */
+/* AJUSTE PARA PANTALLA DE RUTINA PERSONALIZADA      */
+/* ================================================= */
+
+.acciones-personalizadas {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Crea dos columnas de igual ancho */
+    gap: 15px; /* Espacio entre las columnas */
+}
+
+/* ================================================= */
+/* NUEVOS ESTILOS PARA EL MODAL DE ROPA DEPORTIVA    */
+/* ================================================= */
+
+.header-catalogo {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.header-catalogo .header-icono {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: #ffc300;
+}
+
+.header-catalogo h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+}
+
+.header-catalogo p {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    max-width: 400px;
+    /* Margen inferior para separar del botón de WhatsApp */
+    margin: 0 auto 15px auto; 
+}
+
+/* ================================================= */
+/* CORRECCIÓN DE ESTILO PARA BOTONES DE ACCIÓN       */
+/* (Asegura que los links se vean como botones)      */
+/* ================================================= */
+
+/* Estilo base para los botones de acción de redes/contacto */
+.btn-accion {
+    display: block;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    text-decoration: none; /* ¡Importante para que no parezcan links! */
+    font-weight: bold;
+    font-size: 1rem;
+    text-align: center; /* Centra el texto y el ícono */
+    transition: transform 0.2s ease;
+}
+
+.btn-accion:hover {
+    transform: scale(1.03);
+}
+
+/* Colores específicos para cada botón */
+.btn-accion.whatsapp {
+    background-color: #25D366;
+    color: white;
+}
+
+.btn-accion.facebook {
+    background-color: #1877F2;
+    color: white;
+}
+
+.btn-accion.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+}
+
+/* ================================================= */
+/* NUEVOS ESTILOS PARA LA PANTALLA DE SUPLEMENTOS    */
+/* ================================================= */
+
+.header-suplementos {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.header-suplementos .header-icono {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 10px;
+    color: #ffc300;
+}
+
+.header-suplementos h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 0 5px 0;
+}
+
+.header-suplementos p {
+    color: #b0b0b0;
+    font-size: 0.95rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Contenedor de los botones de acción */
+.acciones-suplementos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+/* El estilo .btn-accion y .whatsapp ya existen. Solo necesitamos el de Instagram */
+.acciones-suplementos .instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    color: white;
+}
+
+/* Contenedor para el catálogo de Canva */
+.catalogo-contenedor {
+    position: relative;
+    width: 100%;
+    height: 0;
+    /* Proporción para mantener el aspecto del catálogo. Se calcula dividiendo alto/ancho */
+    padding-top: 141.42%; 
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.catalogo-contenedor iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ================================================= */
+/* NUEVOS ESTILOS PARA LA PANTALLA DE DATOS (PERFIL) */
+/* ================================================= */
+
+.tarjeta-perfil {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.perfil-header .perfil-icono {
+    font-size: 3rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%; /* Círculo perfecto */
+    margin: 0 auto 15px auto;
+}
+
+.perfil-header h2 {
+    margin: 0;
+    color: #ffc300; /* Color principal */
+    font-size: 1.4rem;
+}
+
+.perfil-header p {
+    margin: 5px 0 25px 0;
+    color: #b0b0b0;
+    font-size: 1rem;
+}
+
+/* Lista de detalles */
+.perfil-detalles {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 25px 0;
+    text-align: left;
+}
+
+.perfil-detalles li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.95rem;
+}
+
+.perfil-detalles li:last-child {
+    border-bottom: none;
+}
+
+.perfil-detalles i {
+    color: #ffc300;
+    font-size: 1.1rem;
+    margin-top: 4px; /* Pequeño ajuste para alinear con el texto */
+    width: 20px; /* Ancho fijo para que los textos se alineen */
+    text-align: center;
+}
+
+/* Sección de botones de acción/redes */
+.perfil-acciones p {
+    font-weight: bold;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.perfil-acciones .btn-accion {
+    display: block;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.perfil-acciones .btn-accion:hover {
+    transform: scale(1.03);
+}
+
+.perfil-acciones .whatsapp {
+    background-color: #25D366;
+    color: white;
+}
+
+.perfil-acciones .facebook {
+    background-color: #1877F2;
+    color: white;
+}
+
+/* ================================================= */
+/* NUEVOS ESTILOS PARA LA PANTALLA DE CONTACTOS      */
+/* ================================================= */
+
+/* Contenedor principal de las tarjetas de contacto */
+.contenedor-contactos {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre las tarjetas */
+    margin: 30px 0;
+}
+
+/* Estilo de cada tarjeta/botón de contacto */
+.tarjeta-contacto {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 15px 20px;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    
+    /* Para alinear ícono y texto horizontalmente */
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Espacio entre el ícono y el texto */
+    text-align: left; /* Alinea el texto a la izquierda */
+}
+
+/* Efecto al pasar el cursor */
+.tarjeta-contacto:hover {
+    transform: scale(1.03);
+    background-color: rgba(255, 255, 255, 0.18);
+    border-color: #ffc300; /* Color amarillo de tu tema */
+}
+
+/* Estilo del ícono (emoji) */
+.contacto-icono {
+    font-size: 2.5rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 10px;
+    line-height: 1;
+    flex-shrink: 0; /* Evita que el ícono se deforme */
+}
+
+/* Contenedor del texto */
+.contacto-texto h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.contacto-texto span {
+    font-size: 0.9rem;
+    color: #b0b0b0; /* Color más suave para el subtítulo */
+}
+
+/* ================================================= */
+/* NUEVOS ESTILOS PARA PANTALLA MEJORA TU EXPERIENCIA */
+/* ================================================= */
+
+/* Grid que organiza las tarjetas de funcionalidades */
+.grid-mejoras {
+    display: grid;
+    /* Crea columnas adaptables, ideal para diferentes tamaños de pantalla */
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 15px; /* Espacio entre las tarjetas */
+    margin: 30px 0;
+    width: 100%;
+}
+
+/* Estilo de cada tarjeta/botón */
+.tarjeta-mejora {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    color: #f1f1f1;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    
+    /* Para alinear el ícono y el texto verticalmente */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* Espacio entre el ícono y el texto */
+    aspect-ratio: 1 / 1; /* Hace que las tarjetas sean cuadradas */
+}
+
+/* Efecto al pasar el cursor por encima */
+.tarjeta-mejora:hover {
+    transform: translateY(-5px) scale(1.05);
+    background-color: rgba(255, 255, 255, 0.18);
+    border-color: #ffc300; /* Usamos el color amarillo de tu tema */
+}
+
+/* Estilo para el ícono dentro de la tarjeta */
+.mejora-icono {
+    font-size: 2.2rem;
+    line-height: 1; /* Ajusta la altura de línea */
+}
+
+/* Estilo para el texto dentro de la tarjeta */
+.tarjeta-mejora span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* ================================================= */
+/* NUEVOS ESTILOS PARA LA PANTALLA DE INTENSIDAD     */
+/* ================================================= */
+
+/* Contenedor principal de las tarjetas */
+.contenedor-intensidad {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espacio entre las tarjetas */
+    margin-top: 30px;
+}
+
+/* Estilo individual de cada tarjeta de selección */
+.tarjeta-intensidad {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px; /* Bordes más redondeados y elegantes */
+    padding: 20px;
+    display: flex;
+    align-items: center; /* Centra el contenido verticalmente */
+    gap: 20px; /* Espacio entre el ícono y el texto */
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efecto al pasar el cursor */
+.tarjeta-intensidad:hover {
+    transform: scale(1.03); /* La tarjeta se hace un poco más grande */
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Estilo para la sección del ícono (estrellas) */
+.intensidad-icono {
+    font-size: 2.5rem; /* Estrellas más grandes */
+    flex-shrink: 0; /* Evita que el ícono se encoja */
+}
+
+/* Estilo para la sección del texto */
+.intensidad-texto h2 {
+    margin: 0 0 5px 0; /* Ajuste de márgenes */
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.intensidad-texto p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #b0b0b0; /* Un color más suave para la descripción */
+}
+
+/* ================================================= */
+/* NUEVOS ESTILOS PARA BOTONES Y PANTALLA 2          */
+/* ================================================= */
+
+/* --- A. Estilos para los botones de MÚSCULOS --- */
+
+/* Contenedor que organiza los botones en una cuadrícula adaptable */
+#contenedorMusculos {
+    display: grid;
+    /* Crea columnas automáticas de mínimo 100px */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 12px;
+    margin-bottom: 30px; /* Más espacio antes de los botones de acción */
+}
+
+/* Estilo base de cada botón de músculo */
+.musculo {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 18px 5px; /* Hacemos los botones más altos */
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600; /* Texto más grueso */
+    font-size: 0.85rem;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Efecto visual al pasar el cursor por encima */
+.musculo:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-4px);
+}
+
+/* Estilo para el botón de músculo cuando está SELECCIONADO */
+.musculo.seleccionado {
+    background-color: #ff6f61; /* Tu color principal */
+    color: white;
+    border-color: #ff6f61;
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(255, 111, 97, 0.35);
+}
+
+
+/* --- B. Estilos para los botones de ACCIÓN --- */
+
+.contenedor-acciones {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espacio entre los elementos de acción */
+}
+
+/* Estilo base para todos los botones de acción */
+.btn {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: scale(1.03); /* Efecto de crecimiento al pasar el mouse */
+}
+
+/* Estilo para el botón PRINCIPAL (Generar) */
+.btn-principal {
+    background: linear-gradient(45deg, #4caf50, #81c784);
+    color: white;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+/* Estilo para el botón SECUNDARIO (Crear tu rutina) */
+.btn-secundario {
+    background: linear-gradient(45deg, #EA8709, #ffab40);
+    color: white;
+    box-shadow: 0 4px 15px rgba(234, 135, 9, 0.3);
+}
+
+/* Contenedor para la fila de botones terciarios */
+.fila-botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* Estilo para los botones TERCIARIOS (Guardadas, Mejorar) */
+.btn-terciario {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #f1f1f1;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.btn-terciario:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Estilo para el botón de ATRÁS */
+.btn-atras {
+    background: none;
+    color: #9e9e9e;
+    font-weight: normal;
+    font-size: 0.9rem;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.btn-atras:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 /* Vista Historial */
 #historyView {
     margin-top: 20px;
