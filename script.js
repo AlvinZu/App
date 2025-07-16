@@ -487,27 +487,47 @@ function mostrarTab(tabId) {
 
         // Función para cargar las rutinas guardadas del usuario autenticado
         function cargarRutinasGuardadas() {
-            const rutinasContainer = document.getElementById("rutinasGuardadas");
-            rutinasContainer.innerHTML = "";
+    const rutinasContainer = document.getElementById("rutinasGuardadas");
+    rutinasContainer.innerHTML = "";
 
-            if (usuarioAutenticado.rutinas.length === 0) {
-                const mensaje = document.createElement("p");
-                mensaje.textContent = "No hay rutinas guardadas.";
-                rutinasContainer.appendChild(mensaje);
-                return;
-            }
+    if (!usuarioAutenticado || usuarioAutenticado.rutinas.length === 0) {
+        rutinasContainer.innerHTML = `
+            <div class="no-rutinas">
+                <p>Aún no tienes rutinas guardadas.</p>
+                <p>¡Ve y crea la tuya!</p>
+            </div>
+        `;
+        return;
+    }
 
-            usuarioAutenticado.rutinas.forEach((rutina, index) => {
-                const div = document.createElement("div");
-                div.classList.add("rutina-guardada");
-                div.innerHTML = `
-                    <strong>${rutina.nombre}</strong>
-                    <button onclick="mostrarDetallesRutina(${index})">VER DETALLES</button>
-                    <button onclick="eliminarRutina(${index})">ELIMINAR</button>
-                `;
-                rutinasContainer.appendChild(div);
-            });
-        }
+    // Creamos un contenedor para las tarjetas
+    const contenedorGrid = document.createElement("div");
+    contenedorGrid.className = "grid-rutinas";
+    
+    usuarioAutenticado.rutinas.forEach((rutina, index) => {
+        const divCard = document.createElement("div");
+        divCard.className = "rutina-guardada-card";
+        
+        // Creamos la lista de músculos de la rutina
+        const musculosHtml = rutina.musculos.map(m => `<span>${m.toUpperCase()}</span>`).join('');
+
+        divCard.innerHTML = `
+            <div class="card-header">
+                <h3>${rutina.nombre}</h3>
+                <div class="card-musculos">
+                    ${musculosHtml}
+                </div>
+            </div>
+            <div class="card-acciones">
+                <button class="btn-ver" onclick="mostrarDetallesRutina(${index})">Ver</button>
+                <button class="btn-eliminar" onclick="eliminarRutina(${index})">Eliminar</button>
+            </div>
+        `;
+        contenedorGrid.appendChild(divCard);
+    });
+
+    rutinasContainer.appendChild(contenedorGrid);
+}
 
 // Función para mostrar los detalles de una rutina con una tabla
 function mostrarDetallesRutina(index) {
