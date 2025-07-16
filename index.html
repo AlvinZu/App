@@ -24,23 +24,66 @@
 <body>
     <!-- Pantalla de Registro -->
     <div id="pantallaRegistro" class="pantalla">
-        <h1>MIRAGE GYM</h1>
-        <p>¿ERES NUEVO? .   CREA TU CUENTA</p>
-        <input type="text" id="nombreUsuarioRegistro" placeholder="Nombre de usuario" required>
-        <input type="password" id="contrasenaRegistro" placeholder="Contraseña" required>
-        <button onclick="registrarUsuario()">📝 REGISTRARME</button>
-        <button onclick="mostrarPantalla('pantallaInicioSesion')"style="background: #4caf50;">✅ YA TENGO CUENTA</button>
+    <div class="auth-card">
+        <div class="auth-header">
+            <img src="icon-192x192.png" alt="Mirage Gym Logo" class="auth-logo">
+            <h1>Crea tu Cuenta</h1>
+            <p>Únete a la comunidad de Mirage Gym</p>
+        </div>
+        <div class="auth-form">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="nombreUsuarioRegistro" placeholder="Nombre de usuario" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="contrasenaRegistro" placeholder="Crea una Contraseña" required>
+            </div>
+            <div class="show-password-container">
+                <input type="checkbox" id="mostrarContrasenaRegistro" onclick="togglePasswordVisibility('mostrarContrasenaRegistro', 'contrasenaRegistro')">
+                <label for="mostrarContrasenaRegistro">Mostrar contraseña</label>
+            </div>
+            </div>
+        <div class="auth-actions">
+            <button onclick="registrarUsuario()" class="btn btn-principal">📝 REGISTRARME</button>
+        </div>
+        <div class="auth-footer">
+            <p>¿Ya tienes una cuenta? <a href="#" onclick="mostrarPantalla('pantallaInicioSesion'); return false;">Inicia sesión</a></p>
+        </div>
     </div>
+</div>
 
     <!-- Pantalla de Inicio de Sesión -->
     <div id="pantallaInicioSesion" class="pantalla oculto">
-        <h1>INICIAR SESIÓN</h1>
-      <p>USA TUS CREDENCIALES</p>
-        <input type="text" id="nombreUsuarioInicioSesion" placeholder="Nombre de usuario" required>
-        <input type="password" id="contrasenaInicioSesion" placeholder="Contraseña" required>
-        <button onclick="iniciarSesion()"style="background: #2785FD;">🔑 INICIAR SESIÓN</button>
-        <button onclick="mostrarPantalla('pantallaRegistro')">↩️ REGRESAR</button>
+    <div class="auth-card">
+        <div class="auth-header">
+            <img src="icon-192x192.png" alt="Mirage Gym Logo" class="auth-logo">
+            <h1>Bienvenido</h1>
+            <p>Inicia sesión para continuar</p>
+        </div>
+        <div class="auth-form">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" id="nombreUsuarioInicioSesion" placeholder="Nombre de usuario" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="contrasenaInicioSesion" placeholder="Contraseña" required>
+            </div>
+            <div class="show-password-container">
+                <input type="checkbox" id="mostrarContrasenaLogin" onclick="togglePasswordVisibility('mostrarContrasenaLogin', 'contrasenaInicioSesion')">
+                <label for="mostrarContrasenaLogin">Mostrar contraseña</label>
+            </div>
+            </div>
+        <div class="auth-actions">
+            <button onclick="iniciarSesion()" class="btn btn-principal">🔑 INICIAR SESIÓN</button>
+        </div>
+        <div class="auth-footer">
+            <p>¿No tienes una cuenta? <a href="#" onclick="mostrarPantalla('pantallaRegistro'); return false;">Regístrate aquí</a></p>
+        </div>
     </div>
+</div>
+  
 
     <!-- Pantalla: Elige Intensidad de Rutina -->
     <div id="pantallaIntensidad" class="pantalla oculto">
