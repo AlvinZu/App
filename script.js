@@ -1402,6 +1402,17 @@ window.addEventListener('popstate', (event) => {
     }
 });
 
+// NUEVA FUNCIÓN para mostrar/ocultar contraseña
+function togglePasswordVisibility(checkboxId, passwordFieldId) {
+    const checkbox = document.getElementById(checkboxId);
+    const passwordField = document.getElementById(passwordFieldId);
+    
+    // Si el checkbox está marcado, muestra el texto. Si no, ocúltalo.
+    if (passwordField && checkbox) {
+        passwordField.type = checkbox.checked ? "text" : "password";
+    }
+}
+
 
 function loadHistory() {
     const selectedMuscle = document.getElementById('historyMuscleFilter').value;
@@ -1517,4 +1528,4 @@ function clearForm() {
         }
 
         // Inicializar la aplicación
-        mostrarPantalla("pantallaRegistro");
+        mostrarPantalla("pantallaInicioSesion");
